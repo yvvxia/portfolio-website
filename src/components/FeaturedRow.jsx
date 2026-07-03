@@ -114,7 +114,7 @@ export function FeaturedRow({ p, s, m, onOpen, i }) {
             display: "inline-block",
             font: "var(--text-h1)",
             letterSpacing: "var(--tracking-h1)",
-            color: hov ? "#8a8985" : "#111110",
+            color: "#111110",
             transition: `color ${Math.round(360 * m.mult)}ms var(--ease-out)`,
           }}
         >

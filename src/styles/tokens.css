@@ -1,0 +1,206 @@
+/* ============================================================
+   Design tokens — ported from the Claude Design system
+   "My Portfolio": muted monochrome paper grays, near-black ink,
+   one restrained periwinkle accent. Brutalist: no rounding.
+   ============================================================ */
+
+:root {
+  /* ---- Color: base palette ---- */
+  --gray-0: #fbfaf9; /* lightest surface */
+  --gray-1: #f1f0ee; /* page paper */
+  --gray-2: #e7e6e3; /* alt band / pressed */
+  --gray-3: #d8d7d3; /* hairline */
+  --gray-4: #b3b2ae; /* disabled / faint */
+  --gray-5: #8a8985; /* muted text */
+  --gray-6: #4a4a48; /* secondary text */
+  --gray-9: #111110; /* ink */
+
+  --accent: #6c7bff; /* periwinkle — used at most once per page */
+  --accent-ink: #111110;
+
+  /* Semantic aliases */
+  --surface-page: var(--gray-1);
+  --surface-card: var(--gray-0);
+  --surface-band: var(--gray-2);
+  --surface-inverse: var(--gray-9);
+
+  --text-body: var(--gray-9);
+  --text-secondary: var(--gray-6);
+  --text-muted: var(--gray-5);
+  --text-faint: var(--gray-4);
+  --text-inverse: var(--gray-1);
+
+  --border-hairline: var(--gray-3);
+  --border-strong: var(--gray-9);
+  --focus-ring: var(--gray-9);
+
+  /* ---- Typography ---- */
+  --font-display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+
+  --text-display-xl: 700 clamp(64px, 9vw, 128px) / 0.9 var(--font-display);
+  --tracking-display-xl: -0.04em;
+  --text-display: 700 clamp(44px, 6vw, 72px) / 0.95 var(--font-display);
+  --tracking-display: -0.03em;
+
+  --text-h1: 500 32px/1.1 var(--font-display);
+  --tracking-h1: -0.02em;
+  --text-h2: 500 22px/1.25 var(--font-display);
+  --tracking-h2: -0.01em;
+  --text-h3: 500 17px/1.35 var(--font-display);
+  --tracking-h3: 0;
+
+  --text-body-md: 400 15px/1.55 var(--font-body);
+  --text-body-sm: 400 13px/1.5 var(--font-body);
+
+  --text-meta: 400 11px/1.45 var(--font-mono);
+  --tracking-meta: 0.02em;
+  --text-eyebrow: 500 11px/1.3 var(--font-body);
+  --tracking-eyebrow: 0.08em;
+
+  --text-index: 700 56px/1 var(--font-display);
+
+  /* ---- Spacing / layout ---- */
+  --radius-none: 0;
+  --hairline: 1px solid var(--border-hairline);
+  --rule-strong: 1px solid var(--border-strong);
+  --container-max: 1360px;
+  --gutter: clamp(20px, 4vw, 64px);
+  --grid-gap: 24px;
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 120ms;
+  --dur-med: 240ms;
+  --hover-opacity: 0.55;
+  --hover-shift: 4px;
+}
+
+/* ---- Chinese (zh) typography adaptation ----
+   Set lang="zh" on any container and every type token re-resolves.
+   CJK never gets negative tracking; display weight goes up (900);
+   line-heights get taller; wide-tracked hanzi replaces uppercase eyebrows. */
+[lang="zh"] {
+  --font-display: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-body: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: "IBM Plex Mono", "Noto Sans SC", monospace;
+
+  --text-display-xl: 900 clamp(56px, 8vw, 108px) / 1.08 var(--font-display);
+  --tracking-display-xl: 0.02em;
+  --text-display: 900 clamp(38px, 5vw, 60px) / 1.15 var(--font-display);
+  --tracking-display: 0.02em;
+
+  --text-h1: 500 32px/1.35 var(--font-display);
+  --tracking-h1: 0.02em;
+  --text-h2: 500 22px/1.45 var(--font-display);
+  --tracking-h2: 0.02em;
+  --text-h3: 500 17px/1.55 var(--font-display);
+  --tracking-h3: 0.02em;
+
+  --text-body-md: 400 15px/1.8 var(--font-body);
+  --text-body-sm: 400 13px/1.75 var(--font-body);
+
+  --text-meta: 400 11px/1.6 var(--font-mono);
+  --tracking-meta: 0.05em;
+  --text-eyebrow: 500 11px/1.4 var(--font-body);
+  --tracking-eyebrow: 0.3em;
+
+  --text-index: 700 56px/1 var(--font-display);
+}
+
+/* ---- Base ---- */
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--text-body);
+  font: var(--text-body-md);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection {
+  background: var(--gray-9);
+  color: var(--gray-1);
+}
+a {
+  color: inherit;
+}
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---- Custom blend-mode cursor ---- */
+#ptf-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: #fff;
+  mix-blend-mode: difference;
+  will-change: transform, width, height;
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+/* Hide the native cursor only while the custom one is active. */
+html.ptf-no-cursor,
+html.ptf-no-cursor * {
+  cursor: none !important;
+}
+
+/* ---- Marquee keyframes ---- */
+@keyframes ptf-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Respect reduced-motion: hold everything in its final state. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .ptf-marquee-track {
+    animation: none !important;
+  }
+  .ptf-reveal,
+  .ptf-line {
+    transition: none !important;
+  }
+}
+
+/* ---- Responsive: collapse the multi-column grids on small screens ---- */
+@media (max-width: 860px) {
+  .ptf-hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .ptf-featured-row {
+    grid-template-columns: 1fr !important;
+    direction: ltr !important;
+  }
+  .ptf-featured-row > * {
+    direction: ltr !important;
+  }
+  .ptf-other-row {
+    grid-template-columns: 40px 1fr auto !important;
+  }
+  .ptf-other-hide {
+    display: none !important;
+  }
+  .ptf-contact-grid,
+  .ptf-cs-grid,
+  .ptf-cs-2col,
+  .ptf-footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

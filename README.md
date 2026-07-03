@@ -1,4 +1,4 @@
-# Wu Chen Portfolio
+# Portfolio
 
 A bilingual one-page portfolio for Wu Chen. Built with React + Vite.
 

@@ -41,3 +41,24 @@ ready, add image files to `public/` and add a `cover` field to a project:
 
 `ImagePlaceholder` will render an image automatically when a `cover` value is
 present.
+
+## AI chat assistant
+
+A floating "Ask AI / 问 AI" assistant (bottom-left) answers visitor questions
+about the work, skills and availability. It is bilingual and follows the site's
+language toggle.
+
+- Frontend: `src/components/ChatWidget.jsx`
+- Backend: `api/chat.js` — a Vercel serverless proxy to DeepSeek. The API key
+  stays server-side and is never exposed to the browser.
+
+### Setup
+
+1. Get a key at https://platform.deepseek.com/ (API Keys).
+2. Local: `npm i -g vercel`, then `vercel dev` (a plain `vite dev` won't run the
+   `/api/chat` function). Add the key with `vercel env add DEEPSEEK_API_KEY`.
+3. Deploy on Vercel, then set `DEEPSEEK_API_KEY` in
+   Project → Settings → Environment Variables and redeploy.
+
+To use a different OpenAI-compatible provider (Qwen, GLM, …), change the request
+URL, `model`, and env var in `api/chat.js`.

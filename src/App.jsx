@@ -8,6 +8,7 @@ import { Marquee } from "./components/Marquee.jsx";
 import { CaseStudy } from "./components/CaseStudy.jsx";
 import { TextLink } from "./components/TextLink.jsx";
 import { CustomCursor } from "./components/CustomCursor.jsx";
+import { ChatWidget } from "./components/ChatWidget.jsx";
 
 function NavLink({ children, target, underline, onNav }) {
   const [hov, setHov] = useState(false);
@@ -300,6 +301,8 @@ export default function App() {
       ) : null}
 
       <CustomCursor />
+
+      <ChatWidget lang={lang} />
     </div>
   );
 }

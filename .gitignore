@@ -5,3 +5,11 @@ dist-ssr
 .DS_Store
 .vite
 .agents
+
+# Secrets — never commit real API keys
+.env
+.env.local
+.env.*.local
+
+# Vercel
+.vercel
